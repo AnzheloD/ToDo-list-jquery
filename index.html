@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Todo App</title>
+</head>
+<body class="bg-light">
+    <h1 class="display-4 mt-3 mb-3 text-center myTitle">My To Do List</h1>
+
+    <div class="container">
+        
+        <div class="d-block form-inline text-center mt-3 mb-3">
+            <input type="text" class="form-control d-inline-block w-50 mb-2 mr-sm-2 mb-sm-0" id="todo" name="todoList" placeholder="Task...">
+            <button class="btn btn-primary" id="addTodo">Add</button>
+        </div>
+    
+        <ul class="list-group mx-auto" style="width: 65%">
+            <li class="list-group-item list-group-item-action">
+                Buy tickets for concert<span class="close">&times;</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+                Book conference room<span class="close">&times;</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+                Meet Sarah for lunch<span class="close">&times;</span>
+            </li>
+        </ul>
+    </div>    
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#addTodo').click(function(){
+                var toAdd = $('#todo').val();
+                if(toAdd === ''){
+                    alert("You must add a task");
+                }else{
+                    $('ul').append('<li class="list-group-item list-group-item-action">'
+                        + toAdd + 
+                        '<span class="close">&times;</span></li>'
+                    );
+                    $('#todo').val("");
+                }
+            });
+            $(document).on('click','.close', function(){
+                $(this).parent().remove();
+            });
+            $(document).on('click','li', function(){
+                $(this).toggleClass('strike list-group-item-success checked');
+            });
+        });
+    </script>
+    
+</body>
+</html>
